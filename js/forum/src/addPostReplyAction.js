@@ -11,6 +11,10 @@ export default function () {
 
     if (post.isHidden() || (app.session.user && !post.discussion().canReply())) return;
 
+    if ( !
+      ( app.cache.discussionList && app.cache.discussionList.canStartDiscussion ) )
+          return;
+    
     items.add('reply',
       Button.component({
         className: 'Button Button--link',

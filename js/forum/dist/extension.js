@@ -715,6 +715,8 @@ System.register('flarum/mentions/addPostReplyAction', ['flarum/extend', 'flarum/
 
       if (post.isHidden() || app.session.user && !post.discussion().canReply()) return;
 
+      if (!(app.cache.discussionList && app.cache.discussionList.canStartDiscussion)) return;
+
       items.add('reply', Button.component({
         className: 'Button Button--link',
         children: app.translator.trans('flarum-mentions.forum.post.reply_link'),
