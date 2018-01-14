@@ -715,7 +715,7 @@ System.register('flarum/mentions/addPostReplyAction', ['flarum/extend', 'flarum/
 
       if (post.isHidden() || app.session.user && !post.discussion().canReply()) return;
 
-      if (!(app.cache.discussionList && app.cache.discussionList.canStartDiscussion)) return;
+      if (!post.discussion().loggedinUserIsMemberOfGroup) return;
 
       items.add('reply', Button.component({
         className: 'Button Button--link',
@@ -934,6 +934,11 @@ System.register('flarum/mentions/components/PostMentionedNotification', ['flarum
             var auc = notification.additionalUnreadCount();
             var content = notification.content();
 
+            // DFSKLARD: URL GENERATION FOR EMAILS:
+            // I'm fairly sure that this is where
+            // the URL is created that finds its way into 
+            // the email!  We want to turn this into an 
+            // autologin URL!
             return app.route.discussion(post.discussion(), auc ? post.number() : content && content.replyNumber);
           }
         }, {
