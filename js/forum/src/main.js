@@ -28,11 +28,13 @@ app.initializers.add('flarum-mentions', function() {
   addPostReplyAction();
 
   // Show a Quote button when Post text is selected
-  addPostQuoteButton();
+  // NOT DESIRED BY DFSKLARD:
+  // addPostQuoteButton();
 
   // After typing '@' in the composer, show a dropdown suggesting a bunch of
   // posts or users that the user could mention.
-  addComposerAutocomplete();
+  // NOT DESIRED BY DFSKLARD:
+  // !!! addComposerAutocomplete();
 
   app.notificationComponents.postMentioned = PostMentionedNotification;
   app.notificationComponents.userMentioned = UserMentionedNotification;

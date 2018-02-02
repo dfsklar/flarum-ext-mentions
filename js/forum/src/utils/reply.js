@@ -4,13 +4,20 @@ function insertMention(post, component, quote) {
   const user = post.user();
   const mention = '@' + (user ? user.username() : post.number()) + '#' + post.id() + ' ';
 
+  // DFSKLARD: I am trying a different approach, placing the mention on the post and the component
+  // but NOT damaging the content of the post by implanting the mention in its content!
+  component.props.mentionAnnotation = mention;
+
   // If the composer is empty, then assume we're starting a new reply.
   // In which case we don't want the user to have to confirm if they
   // close the composer straight away.
+  /*
   if (!component.content()) {
     component.props.originalContent = mention;
   }
+  */
 
+  /*
   const cursorPosition = component.editor.getSelectionRange()[0];
   const preceding = component.editor.value().slice(0, cursorPosition);
   const precedingNewlines = preceding.length == 0 ? 0 : 3 - preceding.match(/(\n{0,2})$/)[0].length;
@@ -21,6 +28,7 @@ function insertMention(post, component, quote) {
       ? '> ' + mention + quote.trim().replace(/\n/g, '\n> ') + '\n\n'
       : mention)
   );
+  */
 }
 
 export default function reply(post, quote) {
