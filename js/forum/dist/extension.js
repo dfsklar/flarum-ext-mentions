@@ -499,10 +499,14 @@ System.register('flarum/mentions/addPostMentionPreviews', ['flarum/extend', 'fla
   var extend, CommentPost, PostPreview, LoadingIndicator;
   function addPostMentionPreviews() {
     extend(CommentPost.prototype, 'config', function () {
+
+      alert("1");
       var contentHtml = this.props.post.contentHtml();
 
+      alert("2");
       if (contentHtml === this.oldPostContentHtml || this.isEditing()) return;
 
+      alert("3");
       this.oldPostContentHtml = contentHtml;
 
       var parentPost = this.props.post;

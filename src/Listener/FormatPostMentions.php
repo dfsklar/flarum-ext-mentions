@@ -67,7 +67,8 @@ class FormatPostMentions
             ->prepend([static::class, 'addId'])
             ->setJS('function(tag) { return System.get("flarum/mentions/utils/textFormatter").filterPostMentions(tag); }');
 
-        $configurator->Preg->match('/\B@(?<username>[a-z0-9_-]+)#(?<id>\d+)/i', $tagName);
+        // DFSKLARD: We now allow spaces in usernames.  Luckily the '#' allows us to keep this from becoming runaway.
+        $configurator->Preg->match('/\B@(?<username>[a-z0-9 _-]+)#(?<id>\d+)/i', $tagName);
     }
 
     /**
